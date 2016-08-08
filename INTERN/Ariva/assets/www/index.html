@@ -1,0 +1,124 @@
+<html>
+<head>
+	<style type="text/css">
+		body
+		{
+			background-image:url('bg.jpg');
+			color:#ffffff;
+			font-family:arial;
+		}
+		input
+		{
+			box-shadow:0px 0px 5px 1px #fafafa;
+			border-radius:25px;
+		}
+		td
+		{
+			padding:3px;
+		}
+	
+	</style>
+    <script src="jquery-1.10.2.js"></script>
+    <script src="jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery-ui.css">
+    <script>
+        $(function() {
+			var sour = "source";
+            $.post("http://itsmygrid.com/tste/data.php",{source:sour},function(value){
+				var availableTags = value.split("\n");
+					$("#source").autocomplete({
+						source: availableTags
+					});
+					$("#dest").autocomplete({
+						source: availableTags
+					});
+				});            	
+		});
+            	
+    </script>
+	<script language="javascript">
+		function doing()
+		{
+			var sour = document.getElementById("source").value;
+			var dest = document.getElementById("dest").value;
+			if((sour=="")||(dest==""))
+			{
+				alert("Enter Details Correctly");
+			}
+			else
+			{
+				$.post("http://itsmygrid.com/tste/checking.php",{source:sour,dest:dest},function(value){
+					var array = value.split("<HR>");
+					var i=0;
+					var str = "<table style='border:1px dashed;border-radius:25px;padding:10px;'><tr><td><b><i>Name</i></b></td><td><b><i>Num</i></b></td><td><b><i>Arrival</i></b></td><td><b><i>Travel</i></b></td></tr>";
+					var stop_name;
+					var stop_num;
+					var arrival;
+					var travel;
+					for(i=0;i<(array.length-1);i++)
+						{
+							var ay = array[i].split("<BR>");
+							stop_name = ay[0];
+							stop_num = ay[1];
+							arrival = ay[2];
+							travel = ay[3];
+							var total = stop_name+","+stop_num+","+arrival+","+travel;
+							//alert(total);
+							str = str + "<tr><td>"+stop_name+"</td><td>"+stop_num+"</td><td>"+arrival+"</td><td>"+travel+"</td></tr>";
+						}
+					str = str + "</table>";
+					document.getElementById("div").innerHTML = str;
+					});
+			}
+		}
+		function aesh()
+		{
+			document.getElementById("div").innerHTML = "";
+		}
+	</script>
+</head>
+<body>
+
+	<center>
+
+	<img src=bus.png width=120px>
+	<table>
+	<tr>
+	
+		<div class="ui-widget">
+		<td><label for="source">Source </label></td>
+		<td><input id="source"></td>
+		</div>
+	
+	</tr>
+	<tr>
+	
+		<div class="ui-widget">
+		<td><label for="dest">Destination </label></td>
+		<td><input id="dest"></td>
+		</div>
+	</tr>
+	</table>
+
+		<table>
+		<tr>
+		<td><button onclick='doing()'>Get</button> </td>
+		<td><button onclick='aesh()'>Clear</button> </td>
+		</tr>
+		</table>
+		<div id="div">
+		</div>
+	</center>
+<!-- <div class="ui-widget">
+<label for="source">Source: </label>
+<input id="source"/>
+</div>
+<div class="ui-widget">
+<label for="dest">Destination: </label>
+<input id="dest" />
+</div>
+<div id="div">
+	<button onclick='doing()'>Get</button> -->
+
+</body>
+</html>

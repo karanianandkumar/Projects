@@ -1,0 +1,34 @@
+-------------------------------------------------
+HOW TO USE THIS APPLICATION .................. ??
+-------------------------------------------------
+Step1: You need to take mobiSecurity.jar file into your mobile and you have to install it in your mobile(Your phone should be java supported
+
+Step2: When you open this file it will shown you a form which contain login,registration,help forms.
+
+Step3: Next follow the commands based on commands.
+
+
+-------------------------------------------------
+MODIFYING CODE & IMPLEMENTING APP FURTHER .......
+-------------------------------------------------
+
+-- First you need to install netbeans-7.2.1-ml-linux.sh.
+
+-- Create a folder in Home(0r RGUKT) with name "NetBeansProjects".
+
+-- Put "MobiSecurity" folter into "NetBeansProjects".
+
+-- Now double click the NetBeans icon on the desktop.
+
+-- After opening the NetBeans goto File-->Openproject.
+
+-- Now add "MobiSequrity"  folder which is in the "NetBeansProjects".
+
+-- Now goto Projects-->MobiSecurity-->Source Packages-->mobisecurity
+
+-- Open Midlet.java file 
+
+-- Now you can modify code and by pressing F6 you can excute the code.
+
+
+

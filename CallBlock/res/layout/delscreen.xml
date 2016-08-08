@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/delid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8FF"
+    android:orientation="vertical" >
+
+ <TextView
+        android:id="@+id/DelText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textStyle="bold|italic"
+        android:text="Click to Delete"
+        android:textSize="20dp" />
+
+    <ListView
+        android:id="@+id/del_items_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/custom"
+        tools:listitem="@android:layout/simple_list_item_checked" />
+
+</LinearLayout>

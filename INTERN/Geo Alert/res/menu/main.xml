@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/item1"
+        android:icon="@drawable/sync"
+        android:title="sync"/>
+    <item
+        android:id="@+id/item2"
+        android:icon="@drawable/stop"
+        android:title="stop"/>
+    <item
+        android:id="@+id/item3"
+        android:icon="@drawable/map"
+        android:title="GeoFence"/>
+    <item
+        android:id="@+id/item4"
+        android:icon="@drawable/data"
+        android:title="Data"/>
+    <item
+        android:id="@+id/item5"
+        android:icon="@drawable/about"
+        android:title="About"/>
+    <item
+        android:id="@+id/item6"
+        android:icon="@drawable/close"
+        android:title="Exit">
+    </item>
+
+</menu>

@@ -1,0 +1,499 @@
+
+An example on using arrays.
+view source
+print?
+1	JButton[] buttons = new JButton[26];
+2	for(int i = 0; i < buttons.length; i++){
+3	     buttons[i] = new JButton(((char)(i + 'A')) + "");
+4	     buttons[i].addActionListener(someActionListener);
+5	     panel.add(buttons[i]);
+6	}
+
+
+
+
+
+// imports used
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+// TypingTutor.java
+/******************************************************************************
+PURPOSE:        To implement and create a Java GUI that allows a user to touch-type
+                using an on-screen keyboard.
+
+INPUT:          Keys entered by the user.
+
+PRECONDITIONS:  JButtons will be used to represent the on screen keys.
+                The setBackground method will be used to change the color of the on-screen
+                key typed by the user.
+                The getBackground method will be used to change the color of the on-screen
+                key back to its original color upon release of the typed key.
+                A JTextArea will be used to display what the user has typed.
+
+OUTPUT:         The text typed by the user will be displayed in the JTextArea part of the GUI.
+
+
+POSTCONDITIONS: none
+
+ALGORITHM:      begin
+                    Declare JButtons for all keyboard key
+                    Declare textarea as private
+                    Declare a single element array with pink as the color that will be used
+                        to change the color of the key typed
+                    Title the GUI "Typing Application"
+                    Color the typed text black
+                    Implement constructors and "add" functions for all keys
+                end
+
+ERRORS:         none
+*******************************************************************************/
+public class TypingTutor extends JFrame implements KeyListener
+{
+
+
+    // JButton declarations for keys
+    // design
+    //1. create an array of MAX JButtons. Let's call it keys.
+    //2. Instantiate and initalize every keys element
+   //         keys[TheKeyCodeOfA] = new JButtons("A")
+   //         keys[TheKeyCodeOfB] = new JButtons("B")
+    //        ....
+    //3. code the keypressed and keyreleased event
+    //   in the event handler, you use the event.getKeyCode to get the
+    //    index of the arrray
+    //    int keycode = event.getKeyCode();
+    //     keys[keycode].setBackground(Color.PINK);
+    private JButton[] keys = new JButton[403];
+       
+    private JLabel label1;
+    private JLabel label2;
+    private JTextField textField;
+    private JTextArea textArea;
+    private String keyText;
+    
+
+    public TypingTutor()
+        {
+            super("Typing Application");
+            label1 = new JLabel("Type some text using your keyboard.  The keys you press will be "
+                + "highlighed and the text will be displayed");
+            add(label1);
+            label2 = new JLabel("Note: clicking the buttons with your mouse will not perform any action");
+            add(label2);
+            
+            textArea = new JTextArea(5, 20);
+            textArea.setEditable(true);
+
+            TextFieldHandler handler = new TextFieldHandler();
+        }   // end five-argument constructor
+
+
+        
+       
+
+
+
+    // overridden keyPressed method handles press of any key
+    @Override
+    public void keyPressed( KeyEvent event )
+    {
+        int keycode = event.getKeyCode();
+        keyText = String.format( "%s",KeyEvent.getKeyText( event.getKeyCode() ) );
+        keys[keycode].setBackground(Color.PINK);
+       
+        keys[KeyEvent.VK_B] = new JButton("B");
+        add(keys[KeyEvent.VK_B]);
+        keys[KeyEvent.VK_C] = new JButton("C");
+        keys[KeyEvent.VK_D] = new JButton("D");
+        keys[KeyEvent.VK_E] = new JButton("E");
+        keys[KeyEvent.VK_F] = new JButton("F");
+        keys[KeyEvent.VK_G] = new JButton("G");
+        keys[KeyEvent.VK_H] = new JButton("H");
+        keys[KeyEvent.VK_I] = new JButton("I");
+        keys[KeyEvent.VK_J] = new JButton("J");
+        keys[KeyEvent.VK_K] = new JButton("K");
+        keys[KeyEvent.VK_L] = new JButton("L");
+        keys[KeyEvent.VK_M] = new JButton("M");
+        keys[KeyEvent.VK_N] = new JButton("N");
+        keys[KeyEvent.VK_O] = new JButton("O");
+        keys[KeyEvent.VK_P] = new JButton("P");
+        keys[KeyEvent.VK_Q] = new JButton("Q");
+        keys[KeyEvent.VK_R] = new JButton("R");
+        keys[KeyEvent.VK_S] = new JButton("S");
+        keys[KeyEvent.VK_T] = new JButton("T");
+        keys[KeyEvent.VK_U] = new JButton("U");
+        keys[KeyEvent.VK_V] = new JButton("V");
+        keys[KeyEvent.VK_W] = new JButton("W");
+        keys[KeyEvent.VK_X] = new JButton("X");
+        keys[KeyEvent.VK_Y] = new JButton("Y");
+        keys[KeyEvent.VK_Z] = new JButton("Z");
+        keys[KeyEvent.VK_1] = new JButton("1");
+        keys[KeyEvent.VK_2] = new JButton("2");
+        keys[KeyEvent.VK_3] = new JButton("3");
+        keys[KeyEvent.VK_4] = new JButton("4");
+        keys[KeyEvent.VK_5] = new JButton("5");
+        keys[KeyEvent.VK_6] = new JButton("6");
+        keys[KeyEvent.VK_7] = new JButton("7");
+        keys[KeyEvent.VK_8] = new JButton("8");
+        keys[KeyEvent.VK_9] = new JButton("9");
+        keys[KeyEvent.VK_0] = new JButton("0");
+        setBackground(Color.PINK);
+
+ 
+
+    }
+
+   private class TextAreaHandler implements ActionListener
+   {
+      // process textfield events
+      public void actionPerformed( ActionEvent event )
+      {
+         String string = ""; // declare string to display
+
+         // user pressed Enter in JTextField textField1
+         if ( event.getSource() == textField )
+            string = String.format( "%s",
+               event.getActionCommand() );
+       }
+    }
+    // overridden keyReleased method handles press of any key
+    @Override
+    public void keyReleased( KeyEvent event )
+    {
+        int keyCode = event.getKeyCode();
+        keyText = String.format( "%s"+KeyEvent.getKeyText(keyCode) );
+        getBackground();
+
+    }
+
+    @Override
+    public void keyTyped( KeyEvent event )
+    {
+        keyText = String.format( "%s", event.getKeyChar() );
+
+    }
+
+    private class TextFieldHandler implements ActionListener
+    {
+      // process textfield events
+      public void actionPerformed( ActionEvent event )
+      {
+         String string = ""; // declare string to display
+
+         // user pressed Enter in JTextField textField1
+         if ( event.getSource() == textField )
+            string = String.format( "%s", event.getActionCommand() );
+       }
+    }
+}
+
+// TypingTutorTest.java
+import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
+
+/******************************************************************************
+PURPOSE:        To test the data values for all parameters in the TypingTutor class
+                by using constructors.
+
+INPUT:          none.
+
+PRECONDITIONS:  JButtons for on screen keys have been implemented.
+                The setBackground and getBackground methods have been implemented properly
+
+OUTPUT:         none
+
+
+POSTCONDITIONS: none
+
+ALGORITHM:      begin
+                    declare a new TypingTutor constructor
+                    set dimensions for typingTutor window and make it visible
+                        using setVisible(true)
+
+                end
+
+ERRORS:         none
+*******************************************************************************/
+public class TypingTutorTest
+{
+    public static void main(String[] args)
+    {
+        TypingTutor typingTutor = new TypingTutor()
+        {
+
+            public void keyTyped(KeyEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            public void keyPressed(KeyEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            public void keyReleased(KeyEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+        };    // creates TypingTutor
+        typingTutor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        typingTutor.setSize(600, 500);      // set dimensions of window
+        typingTutor.setVisible(true);
+    }   // end main
+}   // end class TypingTutorTest
+
+
+
+
+I would use a complete different approach a lot shorter as far as I am concerned and without KeyListener
+
+
+class Keyboard extends JFrame {
+
+   // all key but BSP
+   String qwerty = "QWERTYUIOPASDFGHJKLZXCVBNM ";
+   JTextField field;
+
+   Keyboard() {
+      super("Keyboard");
+      .... set layout
+
+      // create TextField
+      field = new JTextField(80);
+
+      // create buttons
+      for(int i = 0; i < qwerty.length(); i++) {
+          String label = "" + qwerty.charAt(i);
+          add(new MyButton(label));
+      }
+      add(new BSPButton());
+
+      ....
+
+      class MyButton extends JButton implements ActionListener {
+
+         // constructor
+         MyButton(String name) {
+            super(name);
+            addActionListener(this);
+         }
+         // button was hit
+         public void actionPerformed(ActionEvent e) {
+           field.append(getText());    // append to field my label
+         }
+       }
+
+       class BSPButton extends JButton implements ActionListener {
+
+          BSPButton() {
+            super("BSP");
+            addActionListener(this);
+          }
+          public void actionPerformed(ActionEvent e) {
+            String text = field.getText();
+            if(text.length() == 0) 
+               return;
+            field.setText(text.subString(text.length() - 1));
+          }
+        }
+
+
+
+
+        I don't think my arrays are out of bounds. Why won't the GUI start? Here's my code so far:
+
+
+        // imports used
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Panel;
+import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+// TypingTutor.java
+public abstract class TypingTutor extends JFrame implements KeyListener
+{
+
+
+    // JButton declarations for keys
+    // design
+    //1. create an array of MAX JButtons. Let's call it keys.
+    //2. Instantiate and initalize every keys element
+   //         keys[TheKeyCodeOfA] = new JButtons("A")
+   //         keys[TheKeyCodeOfB] = new JButtons("B")
+    //        ....
+    //3. code the keypressed and keyreleased event
+    //   in the event handler, you use the event.getKeyCode to get the
+    //    index of the arrray
+    //    int keycode = event.getKeyCode();
+    //     keys[keycode].setBackground(Color.PINK);
+    
+    String firstRow[] = {"~","1","2","3","4","5","6","7","8","9","0","-","+","Back\nSpace"};
+    String secondRow[] = {"Tab","Q","W","E","R","T","Y","U","I","O","P","[","]","|"};
+    String thirdRow[] = {"Caps\nLock","A","S","D","F","G","H","J","K","L",";","'","Enter"};
+    String fourthRow[] = {"Shift","Z","X","C","V","B","N","M",",",".","?","Space"};
+    JButton first[] = new JButton[14];
+    JButton second[] = new JButton[14];
+    JButton third[] = new JButton[14];
+    JButton fourth[] = new JButton[14];
+    Panel keys = new Panel();
+    Panel text = new Panel();
+    TextArea textArea = new TextArea();
+    String strText = "";
+    private JLabel label1;
+    private JLabel label2;
+    private JTextField textField;
+    
+
+    public TypingTutor()
+        {
+            super("Typing Application");
+            label1 = new JLabel("Type some text using your keyboard.  The keys you press will be "
+                + "highlighed and the text will be displayed");
+            add(label1);
+            label2 = new JLabel("Note: clicking the buttons with your mouse will not perform any action");
+            add(label2);
+            
+            textField = new JTextField(80);
+            textField.setEditable(true);
+
+            TextFieldHandler handler = new TextFieldHandler();
+
+            this.setLayout(new BorderLayout(1,1));
+		keys.setLayout(new GridLayout(4,14));
+		text.setLayout(new BorderLayout(1,1));
+		text.add(textArea);
+
+                for(int i=0; i<14; i++)
+		{
+			first[i] = new JButton(firstRow[i]);
+			first[i].setBackground(Color.white);
+			keys.add(first[i]);
+			first[i].addKeyListener(this);
+		}
+		for(int i=0; i<14; i++)
+		{
+			second[i] = new JButton(secondRow[i]);
+			second[i].setBackground(Color.white);
+			keys.add(second[i]);
+			second[i].addKeyListener(this);
+		}
+		for(int i=0; i<14; i++)
+		{
+			third[i] = new JButton(thirdRow[i]);
+			third[i].setBackground(Color.white);
+			keys.add(third[i]);
+			third[i].addKeyListener(this);
+		}
+		for(int i=0; i<14; i++)
+		{
+			fourth[i] = new JButton(fourthRow[i]);
+			fourth[i].setBackground(Color.white);
+			keys.add(fourth[i]);
+			fourth[i].addKeyListener(this);
+		}
+		add(text, BorderLayout.NORTH);
+		add(keys,BorderLayout.CENTER);
+        }   // end five-argument constructor
+
+
+        
+       
+
+
+
+
+
+   private class TextAreaHandler implements ActionListener
+   {
+      // process textfield events
+      public void actionPerformed( ActionEvent event )
+      {
+         String string = ""; // declare string to display
+
+         // user pressed Enter in JTextField textField1
+         if ( event.getSource() == textField )
+            string = String.format( "%s",
+               event.getActionCommand() );
+       }
+    }
+    // overridden keyReleased method handles press of any key
+    @Override
+    public void keyReleased( KeyEvent event )
+    {
+        int keyCode = event.getKeyCode();
+        strText = String.format( "%s"+KeyEvent.getKeyText(keyCode) );
+        getBackground();
+
+    }
+
+    @Override
+    public void keyTyped( KeyEvent event )
+    {
+        int keyCode = event.getKeyCode();
+        strText = String.format( "%s", event.getKeyCode() );
+
+    }
+
+    private class TextFieldHandler implements ActionListener
+    {
+      // process textfield events
+      public void actionPerformed( ActionEvent event )
+      {
+         String string = ""; // declare string to display
+
+         // user pressed Enter in JTextField textField1
+         if ( event.getSource() == textField )
+            string = String.format( "%s", event.getActionCommand() );
+       }
+    }
+}
+
+
+import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
+
+// TypingTutorTest.java
+public class TypingTutorTest
+{
+    public static void main(String[] args)
+    {
+        TypingTutor typingTutor = new TypingTutor()
+        {
+
+            public void keyTyped(KeyEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            public void keyPressed(KeyEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            public void keyReleased(KeyEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+        };    // creates TypingTutor
+        typingTutor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        typingTutor.setSize(600, 500);      // set dimensions of window
+        typingTutor.setVisible(true);
+    }   // end main
+}   // end class TypingTutorTest
+
